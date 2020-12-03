@@ -112,12 +112,18 @@ $(document).ready(
     // milestone 2:
     // definire un array di colori
     // type
-    // animal = #9A0A00(lightblack) vehicle = #B8C7C5(grey) vegetable = #00BC1C(green)
+    // animal = #9A0A00(brown) vehicle = #B8C7C5(grey) vegetable = #00BC1C(green)
     const threeColor = ["#9A0A00","#B8C7C5","#00BC1C"]
-    // console.log(pickType(icons));
-    const iconColors = newArray(icons, threeColor);
-    console.log(iconColors);
-    eachTemplate(iconColors, $(".icon"))
+
+    //vedere prima prova funzione
+    // const iconColors = newArray(icons, threeColor);
+    // console.log(iconColors);
+    // eachTemplate(iconColors, $(".icon"))
+
+    const arrayType = pickType(icons);
+    // console.log(arrayType);
+    console.log(colorArray(icons, threeColor, arrayType));
+    eachTemplate(colorArray(icons, threeColor, arrayType), $(".icon"))
   }
 );
 // ----------------------function----------------//
@@ -146,31 +152,49 @@ function eachTemplate(array, domName) {
 // Visualizzare le icone di colore diverso in base al
 // tipo.
 
-function newArray(array1, array2){
-  const newArray1 = array1.map(
-    (element) => {
-      for (var i = 0; i < array1.length; i++) {
-        if (element.type == "animal") {
-          element.color = array2[0]
-        } else if (element.type == "vehicle") {
-          element.color = array2[1]
-        } else if (element.type == "vegetable") {
-          element.color = array2[2]
-        }
-      }
-      return element
-  })
-  return newArray1
-}
+// prima prova funzione
+// function newArray(array1, array2){
+//   const newArray1 = array1.map(
+//     (element) => {
+//       for (var i = 0; i < array1.length; i++) {
+//         if (element.type == "animal") {
+//           element.color = array2[0]
+//         } else if (element.type == "vehicle") {
+//           element.color = array2[1]
+//         } else if (element.type == "vegetable") {
+//           element.color = array2[2]
+//         }
+//       }
+//       return element
+//   })
+//   return newArray1
+// }
 
-// function pickType(array) {
-  //   const arrayType =[]
-  //   array.forEach(
-    //     (element) => {
-      //       if (arrayType.includes(element.type) == false) {
-        //       arrayType.push(element.type)
-        //     };
-        //   }
-        //   )
-        //   return arrayType
-        // };
+
+
+function pickType(array) {
+  const arrayType =[]
+  array.forEach(
+      (element) => {
+          if (arrayType.includes(element.type) == false) {
+            arrayType.push(element.type)
+          };
+      }
+    )
+  return arrayType
+};
+
+// array1 = icons ----- array2 = color ---- array3 = array1.types
+function colorArray(array1, array2, array3) {
+  const arraryGenered = array1.map(
+    (element) => {
+      const index = array3.indexOf(element.type)
+      const newObject = {
+        ...element,
+        color : array2[index]
+      }
+      return newObject
+    }
+  )
+  return arraryGenered
+};
