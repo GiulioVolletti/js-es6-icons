@@ -107,7 +107,6 @@ $(document).ready(
       },
     ];
 
-    // eachTemplate(icons, $(".icon"))
 
     // milestone 2:
     // definire un array di colori
@@ -123,7 +122,9 @@ $(document).ready(
     const arrayType = pickType(icons);
     // console.log(arrayType);
     console.log(colorArray(icons, threeColor, arrayType));
-    eachTemplate(colorArray(icons, threeColor, arrayType), $(".icon"))
+    eachTemplate(colorArray(icons, threeColor, arrayType), $(".icon"));
+
+    selector($(".selector"), arrayType)
   }
 );
 // ----------------------function----------------//
@@ -198,3 +199,19 @@ function colorArray(array1, array2, array3) {
   )
   return arraryGenered
 };
+
+// milestone 3:
+// aggiungere una select per filtrare le icone in
+// base al tipo.
+function selector(select, type){
+  type.forEach(
+    (element) => {
+      select.append(`
+        <option value="${element}">${element}</option>
+      `)
+    }
+  )
+};
+// Popolare le options della select dinamicamente
+// e, ogni volta che cambia il valore selezionato,
+// visualizzare le icone corrispondenti.
