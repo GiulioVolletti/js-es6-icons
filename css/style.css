@@ -1,9 +1,21 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 .icon {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 .icon div {
+  width: calc(100% / 6);
+  background-color: lightblue;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
+  margin: 20px 20px;
+
+}
+i{
+  font-size: 40px;
 }

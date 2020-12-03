@@ -107,15 +107,17 @@ $(document).ready(
       },
     ];
 
-    eachTemplate(icons, $(".icon"))
+    // eachTemplate(icons, $(".icon"))
 
     // milestone 2:
     // definire un array di colori
     // type
-    // animal = #9A0A00(lightblack) vehicle = #B8C7C5(grey) vegetable = #00650A(green)
-    const threeColor = ["#9A0A00","#B8C7C5","#00650A"]
-    console.log(pickType(icons));
-
+    // animal = #9A0A00(lightblack) vehicle = #B8C7C5(grey) vegetable = #00BC1C(green)
+    const threeColor = ["#9A0A00","#B8C7C5","#00BC1C"]
+    // console.log(pickType(icons));
+    const iconColors = newArray(icons, threeColor);
+    console.log(iconColors);
+    eachTemplate(iconColors, $(".icon"))
   }
 );
 // ----------------------function----------------//
@@ -128,11 +130,11 @@ function eachTemplate(array, domName) {
   domName.html("");
   array.forEach(
     (object) => {
-      const {name, prefix, family} = object
+      const {name, prefix, family, color} = object
       domName.append(`
         <div>
           <h1> ${name} </h1>
-          <i class="${family} ${prefix}${name} "></i>
+          <i class="${family} ${prefix}${name}"  style ="color: ${color}"></i>
         <div>
         `);
   });
@@ -143,19 +145,32 @@ function eachTemplate(array, domName) {
 // tipo di icona un colore.
 // Visualizzare le icone di colore diverso in base al
 // tipo.
-function pickType(array) {
-  const arrayType =[]
-  array.forEach(
-    (element) => arrayType.push(element.type)
-  )
-  return arrayType
-};
-// style ="color : ${color}"
-// function newArray(array1, array2){
-//   const newArray1 = array1.map(
-//     (element) => {
-//     ...element
-//
-//   })
-//   return newArray
-// }
+
+function newArray(array1, array2){
+  const newArray1 = array1.map(
+    (element) => {
+      for (var i = 0; i < array1.length; i++) {
+        if (element.type == "animal") {
+          element.color = array2[0]
+        } else if (element.type == "vehicle") {
+          element.color = array2[1]
+        } else if (element.type == "vegetable") {
+          element.color = array2[2]
+        }
+      }
+      return element
+  })
+  return newArray1
+}
+
+// function pickType(array) {
+  //   const arrayType =[]
+  //   array.forEach(
+    //     (element) => {
+      //       if (arrayType.includes(element.type) == false) {
+        //       arrayType.push(element.type)
+        //     };
+        //   }
+        //   )
+        //   return arrayType
+        // };
