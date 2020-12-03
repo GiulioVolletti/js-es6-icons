@@ -108,6 +108,14 @@ $(document).ready(
     ];
 
     eachTemplate(icons, $(".icon"))
+
+    // milestone 2:
+    // definire un array di colori
+    // type
+    // animal = #9A0A00(lightblack) vehicle = #B8C7C5(grey) vegetable = #00650A(green)
+    const threeColor = ["#9A0A00","#B8C7C5","#00650A"]
+    console.log(pickType(icons));
+
   }
 );
 // ----------------------function----------------//
@@ -117,14 +125,37 @@ $(document).ready(
 // literal, visualizzare in pagina tutte le icone con il
 // proprio nome.
 function eachTemplate(array, domName) {
+  domName.html("");
   array.forEach(
     (object) => {
       const {name, prefix, family} = object
-      console.log(`
+      domName.append(`
         <div>
           <h1> ${name} </h1>
-          <i class="${family} ${prefix}${name}"></i>
+          <i class="${family} ${prefix}${name} "></i>
         <div>
         `);
   });
-}
+};
+
+// milestone 2:
+// associare ad ogni
+// tipo di icona un colore.
+// Visualizzare le icone di colore diverso in base al
+// tipo.
+function pickType(array) {
+  const arrayType =[]
+  array.forEach(
+    (element) => arrayType.push(element.type)
+  )
+  return arrayType
+};
+// style ="color : ${color}"
+// function newArray(array1, array2){
+//   const newArray1 = array1.map(
+//     (element) => {
+//     ...element
+//
+//   })
+//   return newArray
+// }

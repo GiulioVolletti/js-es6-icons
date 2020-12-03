@@ -1,0 +1,9 @@
+.icon {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.icon div {
+  text-align: center;
+  padding: 30px;
+}
