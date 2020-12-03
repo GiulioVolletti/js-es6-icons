@@ -122,9 +122,29 @@ $(document).ready(
     const arrayType = pickType(icons);
     // console.log(arrayType);
     console.log(colorArray(icons, threeColor, arrayType));
-    eachTemplate(colorArray(icons, threeColor, arrayType), $(".icon"));
+    const arrayColor = colorArray(icons, threeColor, arrayType)
+
+    eachTemplate(arrayColor, $(".icon"));
 
     selector($(".selector"), arrayType)
+    
+    $( ".selector" ).change(
+      function (){
+        console.log($( ".selector" ).val());
+        const arrayFinal = arrayColor.filter(
+          element => {
+            if (element.type == $( ".selector" ).val()) {
+              return element
+            } else if ("" == $( ".selector" ).val()) {
+              return element
+            }
+          }
+        )
+        console.log(arrayFinal);
+        eachTemplate(arrayFinal, $(".icon"));
+      }
+    );
+
   }
 );
 // ----------------------function----------------//
@@ -203,6 +223,7 @@ function colorArray(array1, array2, array3) {
 // milestone 3:
 // aggiungere una select per filtrare le icone in
 // base al tipo.
+// Popolare le options della select dinamicamente
 function selector(select, type){
   type.forEach(
     (element) => {
@@ -212,6 +233,16 @@ function selector(select, type){
     }
   )
 };
-// Popolare le options della select dinamicamente
 // e, ogni volta che cambia il valore selezionato,
 // visualizzare le icone corrispondenti.
+function arrayFilter(array, value){
+  const arrayFiltered = array.filter(
+  (element) => {
+    if (element.type == value) {
+      return element;
+      console.log((element.type == value));
+    }
+  })
+  return arrayFiltered;
+
+};
